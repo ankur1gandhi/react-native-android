@@ -5,18 +5,22 @@
  */
 'use strict';
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, Text, View, Button } from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
+import SearchPage from './SearchPage';
 
-class SearchPage extends Component {
+class App extends Component {
   static navigationOptions = {
     title: 'Property Finder'
   };
 
   render() {
+    const { navigate } = this.props.navigation;
+
     return (
       <View>
         <Text style={styles.description}>Hello World!</Text>
+        <Button onPress={() => navigate('Search')} title="Search" />
       </View>
     );
   }
@@ -24,10 +28,11 @@ class SearchPage extends Component {
 
 const RootStack = createStackNavigator(
   {
+    Home: { screen: App },
     Search: { screen: SearchPage }
   },
   {
-    initialRouteName: 'Search'
+    initialRouteName: 'Home'
   }
 );
 
