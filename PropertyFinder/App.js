@@ -6,26 +6,30 @@
 'use strict';
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
-
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 class SearchPage extends Component {
-  // static navigationOptions = {
-  //   title: 'Property Finder'
-  // };
+  static navigationOptions = {
+    title: 'Property Finder'
+  };
 
   render() {
     return (
       <View>
-        <AppContainer />
+        <Text style={styles.description}>Hello World!</Text>
       </View>
     );
   }
 }
 
-const RootStack = createStackNavigator({
-  Home: { screen: SearchPage }
-});
+const RootStack = createStackNavigator(
+  {
+    Search: { screen: SearchPage }
+  },
+  {
+    initialRouteName: 'Search'
+  }
+);
 
 const AppContainer = createAppContainer(RootStack);
 
