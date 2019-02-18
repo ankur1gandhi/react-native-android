@@ -12,11 +12,31 @@ import {
 } from 'react-native';
 
 export default class SearchPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchString: 'Charlotte'
+    };
+  }
+
   static navigationOptions = {
     title: 'Property Finder'
   };
 
+  // underscore means it should be considered 'private'
+  _onSearchTextChanged = event => {
+    console.log('_onSearchTextChanged');
+    this.setState({ searchString: event.nativeEvent.text });
+    console.log(
+      'Current: ' +
+        this.state.searchString +
+        ', Next: ' +
+        event.nativeEvent.text
+    );
+  };
+
   render() {
+    console.log('SearchPage.render');
     return (
       <View style={styles.container}>
         <Text style={styles.description}>Search for houses to buy!</Text>
@@ -27,10 +47,13 @@ export default class SearchPage extends Component {
           <TextInput
             underlineColorAndroid={'transparent'}
             style={styles.searchInput}
+            value={this.state.searchString}
+            onChange={this._onSearchTextChanged}
             placeholder="Search via name or postcode"
           />
           <Button onPress={() => {}} color="#48BBEC" title="Go" />
         </View>
+        <Image source={require('./Resources/house.png')} style={styles.image} />
       </View>
     );
   }
@@ -63,5 +86,9 @@ const styles = StyleSheet.create({
     borderColor: '#48BBEC',
     borderRadius: 8,
     color: '#48BBEC'
+  },
+  image: {
+    width: 217,
+    height: 138
   }
 });
