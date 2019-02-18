@@ -8,6 +8,7 @@ import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, Button } from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import SearchPage from './SearchPage';
+import SearchResultsPage from './SearchResultsPage';
 
 class App extends Component {
   static navigationOptions = {
@@ -20,7 +21,12 @@ class App extends Component {
     return (
       <View>
         <Text style={styles.description}>Hello World!</Text>
-        <Button onPress={() => navigate('Search')} title="Search" />
+        <Button
+          onPress={() => navigate('Search')}
+          title="Tap to begin adventure"
+        />
+        {/* react-navigation docs say this is required, but it doesn't seem so */}
+        {/* <AppContainer /> */}
       </View>
     );
   }
@@ -29,7 +35,8 @@ class App extends Component {
 const RootStack = createStackNavigator(
   {
     Home: { screen: App },
-    Search: { screen: SearchPage }
+    Search: { screen: SearchPage },
+    Results: { screen: SearchResultsPage }
   },
   {
     initialRouteName: 'Home'
